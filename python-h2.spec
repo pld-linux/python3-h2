@@ -8,6 +8,7 @@
 Summary:	hyper-h2 - HTTP/2 protocol stack
 Summary(pl.UTF-8):	hyper-h2 - stos protokołu HTTP/2
 Name:		python-h2
+# keep 3.x here for python2 support
 Version:	3.2.0
 Release:	5
 License:	MIT
@@ -27,8 +28,7 @@ BuildRequires:	python-hpack < 4
 BuildRequires:	python-hyperframe >= 5.2.0
 BuildRequires:	python-hyperframe < 6
 BuildRequires:	python-hypothesis
-BuildRequires:	python-pytest
-# >= 4.6.5
+BuildRequires:	python-pytest >= 4.6.5
 %endif
 %endif
 %if %{with python3}
@@ -40,8 +40,7 @@ BuildRequires:	python3-hpack < 4
 BuildRequires:	python3-hyperframe >= 5.2.0
 BuildRequires:	python3-hyperframe < 6
 BuildRequires:	python3-hypothesis
-BuildRequires:	python3-pytest
-# >= 4.6.5
+BuildRequires:	python3-pytest >= 4.6.5
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
@@ -100,6 +99,7 @@ Dokumentacja API modułu Pythona h2.
 %py_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python} -m pytest test
 %endif
 %endif
@@ -108,6 +108,7 @@ Dokumentacja API modułu Pythona h2.
 %py3_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python3} -m pytest test
 %endif
 %endif
