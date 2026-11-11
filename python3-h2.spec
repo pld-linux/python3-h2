@@ -7,20 +7,21 @@ Summary:	hyper-h2 - HTTP/2 protocol stack
 Summary(pl.UTF-8):	hyper-h2 - stos protokołu HTTP/2
 Name:		python3-h2
 # beware of twisted compatibility (<5 in twisted 25.5.0)
-Version:	4.3.0
+Version:	4.4.1
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/h2/
 Source0:	https://files.pythonhosted.org/packages/source/h/h2/h2-%{version}.tar.gz
-# Source0-md5:	b4781bbaaae609aa759565585718e0d7
+# Source0-md5:	8ad21558fadb74bc42af25681c9ba7ef
 URL:		https://pypi.org/project/h2/
 BuildRequires:	python3-build
 BuildRequires:	python3-installer
-BuildRequires:	python3-modules >= 1:3.9
-BuildRequires:	python3-setuptools
+BuildRequires:	python3-modules >= 1:3.10
+BuildRequires:	python3-setuptools >= 1:82
+BuildRequires:	python3-wheel >= 0.46.3
 %if %{with tests}
-BuildRequires:	python3-hpack >= 4.1
+BuildRequires:	python3-hpack >= 4.2
 BuildRequires:	python3-hpack < 5
 BuildRequires:	python3-hyperframe >= 6.1
 BuildRequires:	python3-hyperframe < 7
@@ -32,7 +33,7 @@ BuildRequires:	rpmbuild(macros) >= 2.044
 %if %{with doc}
 BuildRequires:	sphinx-pdg-3 >= 7.4.7
 %endif
-Requires:	python3-modules >= 1:3.9
+Requires:	python3-modules >= 1:3.10
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -75,7 +76,7 @@ PYTHONPATH=$(pwd)/src \
 %if %{with doc}
 PYTHONPATH=$(pwd)/src \
 %{__make} -C docs html \
-	PYTHONPATH=sphinx-build-3
+	SPHINXBUILD=sphinx-build-3
 %endif
 
 %install
